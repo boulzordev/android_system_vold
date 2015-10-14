@@ -119,12 +119,11 @@ static int get_keymaster_hw_fde_passwd(const char* passwd, unsigned char* newpw,
     if (should_use_keymaster()) {
         if (scrypt_keymaster(passwd, salt, newpw, (void*)ftr)) {
             SLOGE("scrypt failed");
-        } else {
-            rc = 0;
+            return rc;
         }
     }
 
-    return rc;
+    return 0;
 }
 #endif
 
